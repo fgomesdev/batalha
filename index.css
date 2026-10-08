@@ -4,6 +4,7 @@
     box-sizing: border-box;
     font-family: Arial, Helvetica, sans-serif;
     user-select: none;
+    overflow: hidden;
 }
 
 body {
@@ -31,42 +32,69 @@ section {
     gap: 30px;
 }
 
+#luta{
+      background-image: url("https://i.ytimg.com/vi/C4mKuqAM3rI/maxresdefault.jpg");
+  background-repeat: no-repeat; /* Evita que a imagem fique se repetindo */
+  background-size: cover;     /* Faz a imagem cobrir toda a tela */
+  background-position: center; /* Centraliza a imagem */
+  width: 600px;
+  height: 600px;
+}
 
 button {
-    width: 190px;
-    height: 220px;
-    border: 3px solid #263238;
-    border-radius: 20px;
-    background: white;
-    cursor: pointer;
-    transition: 0.2s;
+    background: none;        /* Remove a cor cinza ou branca padrão */
+    border: none;            /* Remove a borda padrão do botão */
+    padding: 0;              /* Remove espaços internos que o navegador cria */
+    width: 200px;            
+    height: 400px;
+    
+    /* Efeito de transição suave se você quiser colocar algum efeito */
+  transition: transform 0.3s ease; 
 }
 
-
-button:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-}
 
 .button-pokemon {
-    width: 200px;
-    height: 150px;
-    object-fit: contain;
+    width: 100%;
+    height: 100%;
+    object-fit: contain; /* Mantém a proporção do Pokémon sem distorcer */
+    transform: scale(1.3) !important; 
+}
+
+button:hover .button-pokemon {
+    /* Mude para 1.25 ou 1.3 se quiser que cresça mais */
+    transform: scale(1.5) !important; 
+}
+
+#luta button:nth-child(1) {
+    /* Empurra o botão do meio um pouco para baixo em relação aos outros */
+    margin-top: 30px; 
+}
+#luta button:nth-child(2) {
+    /* Empurra o botão do meio um pouco para baixo em relação aos outros */
+    margin-top: 180px; 
+}
+
+#luta button:nth-child(3) {
+    /* Empurra o botão do meio um pouco para baixo em relação aos outros */
+    margin-top: 30px; 
+    margin-right: 15px;
 }
 
 #batalha {
-    width: 800px;
-    height: 400px;
-    background: white;
+    width: 1800px;
+    height: 100%;
+  background-image: url("pokemon/batalha.png");
+  background-repeat: no-repeat; /* Evita que a imagem fique se repetindo */
+  background-size: cover;     /* Faz a imagem cobrir toda a tela */
+  background-position: center; /* Centraliza a imagem */
     border: 3px solid #263238;
     border-radius: 20px;
     padding: 30px;
 
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-
-    margin-top: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
 .pokemon1 {
@@ -82,10 +110,24 @@ button:hover {
     font-size: 24px;
 }
 
+
+.pokemon1 img{
+    margin-right: 400px;
+    margin-top: 25px;
+     transform: scaleX(-1.8); 
+
+}
+
+.pokemon2 img{
+    margin-right: 50px;
+    margin-bottom: 550px;
+     transform: scaleX(1.4); 
+
+}
 .pokemon1 img,
 .pokemon2 img {
-    width: 200px;
-    height: 200px;
+    width: 400px;
+    height: 400px;
     object-fit: contain;
 }
 
@@ -104,76 +146,136 @@ footer a {
     text-transform: uppercase;
 }
 
-@media (max-width: 850px) {
-
-    #batalha {
-        width: 95%;
-        height: auto;
-        padding: 20px;
-        gap: 10px;
-    }
-
-    .pokemon1 img,
-    .pokemon2 img {
-        width: 150px;
-        height: 150px;
-    }
-
-    .pokemon1,
-    .pokemon2 {
-        font-size: 22px;
-    }
-
-    .status {
-        font-size: 18px;
-    }
+.statusbatalharival{
+    position: absolute;
+    margin-right: 950px;
+    margin-bottom: 720px;
+    font-size: 40px;
 }
 
-@media (max-width: 600px) {
-
-    h1 {
-        font-size: 28px;
-        text-align: center;
-    }
-
-    #luta {
-        flex-wrap: wrap;
-        width: 95%;
-    }
-
-    button {
-        width: 140px;
-        height: 170px;
-    }
-
-    .button-pokemon {
-        width: 130px;
-        height: 120px;
-    }
-
-    #batalha {
-        width: 95%;
-        flex-direction: column;
-        height: auto;
-        padding: 20px;
-    }
-
-    .pokemon1 img,
-    .pokemon2 img {
-        width: 130px;
-        height: 130px;
-    }
-
-    .status {
-        font-size: 16px;
-    }
-
-    .retornar {
-        width: 150px !important;
-        height: 45px !important;
-    }
-
-    footer a {
-        font-size: 22px;
-    }
+.statusbatalha{
+    position: absolute;
+    margin-left: 1250px;
+    margin-top: 60px;
+    font-size: 40px;
 }
+
+.statusbatalharival h4, .statusbatalha h4 {
+    display: flex;
+    justify-content: space-between; /* Empurra o nome para a esquerda e a vida para a direita */
+    align-items: center;            /* Alinha os dois verticalmente no meio */
+    width: 100%;                    /* Garante que ocupe toda a largura da caixinha */
+    margin: 0;                      /* Remove margens padrão */
+}
+
+.statusbatalharival h4 span:last-child, .statusbatalha h4 span:last-child{
+    margin-left: 150px; /* Altere o valor em px para aumentar ou diminuir o espaço */
+}
+
+#botaoluta {
+     position: absolute;
+    background-color: #ff4d4d; /* Vermelho */
+    color: white;
+    font-weight: bold;
+    padding: 10px 20px;
+    border: 2px solid #000;
+    border-radius: 15px;
+    cursor: pointer;
+    margin-top: 250px;
+    margin-left: -160px;
+    width: 450px;
+    height: 240px;
+}
+
+/* Estilo do botão RUN */
+#botaofugir {
+      position: absolute;
+    background-color: #4da6ff; /* Azul */
+    color: white;
+    font-weight: bold;
+    padding: 10px 20px;
+    border: 2px solid #000;
+    border-radius: 15px;
+    cursor: pointer;
+    width: 200px;
+    height: 100px;
+       margin-top: 248px;
+    margin-left: 265px;
+    width: 450px;
+    height: 240px;
+}
+
+#botaoluta:hover, #botaofugir:hover {
+    transform: scale(1.05); /* Aumenta o tamanho em 5% */
+}
+
+#caixa-dialogo {
+    position: absolute;
+    bottom: 40px;
+    left: 0px;
+    width: 860px;
+    height: 230px;
+    background-color: white;
+    border: 4px solid #4a4a4a; /* Cor cinza escura da borda */
+    box-shadow: inset 0 0 0 2px #d4a359; /* Borda interna dourada */
+    border-radius: 25px;
+    padding: 15px;
+    box-sizing: border-box;
+}
+#container-texto {
+    display: flex;         
+    justify-content: center;   
+    align-items: center;     
+    font-size: 40px;
+    width: 100%;             
+    height: 100%;           
+    text-align: center;     
+    margin: 0;                
+}
+
+
+#container-golpes {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); 
+    gap: 15px;
+    width: 100%;
+    height: 100%;
+}
+
+.escondido {
+    display: none !important;
+}
+
+
+#container-golpes {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); 
+    gap: 15px;
+    width: 100%;
+    height: 100%;
+    align-items: center;  
+    justify-content: center;
+    box-sizing: border-box;
+}
+
+#container-golpes div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+
+.botao-golpe {
+    background: #4a4a4a;
+    border: 5px solid #000;
+    border-radius: 25px;
+    font-size: 40px;
+    font-weight: bold;
+    cursor: pointer;
+    text-transform: uppercase;
+    width: 100%;
+    height: 100%;
+    color: white;
+}
+
